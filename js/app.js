@@ -32,7 +32,6 @@ $(document).ready(function(){
         var data = {
             format: "json"
         };
-        // Adding a comment here.
         $.getJSON(url, data, success);
     });
 
