@@ -36,9 +36,9 @@ $(document).ready(function(){
     });
 
     function success(data) {
-        var movieHTML = "<ul>";
+        var movieHTML = "<ul><div class='poster-wrap'><img src";
         $.each(data.Search, function(i, movie){
-            movieHTML += "<li>" + movie.Title + "</li>";
+            movieHTML += "<li>" + movie.Title + "</div></li>";
         });
         $("#movies").html(movieHTML);
     }
