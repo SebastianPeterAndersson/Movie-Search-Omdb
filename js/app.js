@@ -23,11 +23,13 @@
 
 $(document).ready(function(){
 
+    var title;
+
     $("#submit").click(function(e){
 
         e.preventDefault();
 
-        var title = $("#search").val();
+        title = $("#search").val();
         var url = "http://www.omdbapi.com/?s=" + encodeURI(title);
         var data = {
             format: "json"
@@ -36,11 +38,29 @@ $(document).ready(function(){
     });
 
     function success(data) {
-        var movieHTML = "<ul><div class='poster-wrap'><img src";
-        $.each(data.Search, function(i, movie){
-            movieHTML += "<li>" + movie.Title + "</div></li>";
+        var movieHTML = "";
+        var movieFoundCount = 0;
+        $.each(data.Search, function(i, movie) {
+            movieHTML += "<li><div class='poster-wrap'>";
+            if (movie.Poster === "N/A") {
+                movieHTML +=  "<i class='material-icons poster-placeholder'>crop_original</i>";
+            } else {
+                movieHTML += "<a href='http://imdb.com/title/" + movie.imdbID + "'><img src='" + movie.Poster + "'></a>";
+            }
+            movieHTML += "</div><span class='movie-title'>" + movie.Title;
+            movieHTML += "</span><span class='movie-year'>" + movie.Year + "</span></li>";
+            movieFoundCount++;
+
         });
-        $("#movies").html(movieHTML);
+        console.log(movieFoundCount);
+        var noMovieFoundStr = "";
+        if (movieFoundCount !== 0) {
+            $("#movies").html(movieHTML);
+        } else {
+            noMovieFoundStr = "<li><i class='material-icons icon-help'>help_outline</i>No movies found that match: " + title + ".</li>";
+            $("#movies").html(noMovieFoundStr);
+        }
+
     }
 
 });
