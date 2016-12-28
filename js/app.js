@@ -37,7 +37,10 @@ $(document).ready(function(){
         $.getJSON(url, data, success);
     });
 
-    function success(data) {
+    function success(data, jqXHR, status) {
+        if (status !== 200 ) {
+            console.log("On noes");
+        }
         var movieHTML = "";
         var movieFoundCount = 0;
         $.each(data.Search, function(i, movie) {
@@ -48,10 +51,10 @@ $(document).ready(function(){
                 movieHTML += "<a href='http://imdb.com/title/" + movie.imdbID + "'><img src='" + movie.Poster + "'></a>";
             }
             movieHTML += "</div><span class='movie-title'>" + movie.Title;
-            movieHTML += "</span><span class='movie-year'>" + movie.Year + "</span></li>";
+            movieHTML += "</span><span class='movie-year'>" + movie.Year + "</span><button class='more' label='" + movie.imdbID + "'>More</button></li>";
             movieFoundCount++;
-
         });
+
         console.log(movieFoundCount);
         var noMovieFoundStr = "";
         if (movieFoundCount !== 0) {
@@ -61,6 +64,24 @@ $(document).ready(function(){
             $("#movies").html(noMovieFoundStr);
         }
 
+        $(".more").on("click", function(){
+            $("#displayMovie").load("../display.html");
+            $(this).addClass("clicked");
+
+            $.each(data.Search, function(i, movie){
+                console.log(movie.IMDbID);
+            });
+
+        });
+
+        console.log(jqXHR);
+
     }
 
-});
+    // I need to get the json data from whichever "more"-button is clicked.
+    // I then need to use the data which was GET'ed. Maybe storing it in an object.
+    //
+
+
+
+}); //doc.ready edn
