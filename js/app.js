@@ -1,31 +1,15 @@
-//
-// $(document).ready(function(){
-//
-//     var title = "lord of the flies";
-//
-//     var url = "http://www.omdbapi.com/?s=" + encodeURI(title);
-//     var data = {
-//         format: "json"
-//     };
-//     function success(data) {
-//         var movieHTML = "<ul>";
-//         $.each(data.Search, function(i, movie){
-//             movieHTML += "<li>" + movie.Title + "</li>";
-//         });
-//
-//         $("body").html(movieHTML);
-//     }
-//
-//     $.getJSON(url, data, success);
-//
-// });
-
 
 $(document).ready(function(){
 
     var title;
 
+    var moreClicked = false;
+
     $("#submit").click(function(e){
+
+        if (moreClicked === true) {
+            $("#movies").show();
+        }
 
         e.preventDefault();
 
@@ -38,9 +22,7 @@ $(document).ready(function(){
     });
 
     function success(data, jqXHR, status) {
-        if (status !== 200 ) {
-            console.log("On noes");
-        }
+            console.log(data.Search);
         var movieHTML = "";
         var movieFoundCount = 0;
         $.each(data.Search, function(i, movie) {
@@ -51,7 +33,7 @@ $(document).ready(function(){
                 movieHTML += "<a href='http://imdb.com/title/" + movie.imdbID + "'><img src='" + movie.Poster + "'></a>";
             }
             movieHTML += "</div><span class='movie-title'>" + movie.Title;
-            movieHTML += "</span><span class='movie-year'>" + movie.Year + "</span><button class='more' label='" + movie.imdbID + "'>More</button></li>";
+            movieHTML += "</span><span class='movie-year'>" + movie.Year + "</span><button class='more' name='" + movie.Title + "'>More</button></li>";
             movieFoundCount++;
         });
 
@@ -64,24 +46,55 @@ $(document).ready(function(){
             $("#movies").html(noMovieFoundStr);
         }
 
-        $(".more").on("click", function(){
-            $("#displayMovie").load("../display.html");
-            $(this).addClass("clicked");
 
-            $.each(data.Search, function(i, movie){
-                console.log(movie.IMDbID);
-            });
+        $(".more").on("click", function(){
+            moreClicked = true;
+            console.log("Hello");
+            $("#movies").hide();
+            $("#displayMovie").load("../display.html");
+
+            var clickedTitle = $(this).attr("name");
+            var url = "http://www.omdbapi.com/?t=" + encodeURI(clickedTitle) + "&y=&plot=short&r=json";
+            var data = {
+                format: "json"
+            };
+
+            function callback(data) {
+                $("#movie-title").text(data.Title);
+                $("#movie-year").text("(" + data.Year + ")");
+
+                $("img#movie-img").attr("src", data.Poster);
+                $("#synopsis").text(data.Plot);
+                $("#IMDbRating").text(data.imdbRating);
+                $("#IMDbLink").attr("href", "http://imdb.com/title/" + data.imdbID);
+
+                $("button#search-results").on("click", function(){
+                    $("#movies").show();
+                    $("#main-container").hide();
+                });
+            }
+
+            $.getJSON(url, data, callback);
+
+
+
 
         });
 
-        console.log(jqXHR);
+
+
 
     }
 
-    // I need to get the json data from whichever "more"-button is clicked.
-    // I then need to use the data which was GET'ed. Maybe storing it in an object.
-    //
 
 
 
-}); //doc.ready edn
+
+
+
+    // I am storing the movie title in the generated button name attribute, then I want to create
+    // a new get request to the server, with the generated button's name attribute as a search parameter.
+
+
+
+}); //doc.ready end
