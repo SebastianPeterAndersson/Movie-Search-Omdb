@@ -1,0 +1,124 @@
+#search-results {
+    color: #FFAAAA;
+    transition: .2s ease-in-out;
+}
+
+#search-results:before {
+    content: "<";
+    font-weight:bold;
+    margin-right: 7px;
+    transition: .4s;
+}
+
+#search-results:hover {
+    text-decoration: none;
+
+}
+
+#main-container {
+    margin: 0 auto;
+    padding: 35px;
+    background-color: #c89999;
+    /* IE9, iOS 3.2+ */
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjODAxNTE1IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiM4MDE1MTUiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjQzNCIvPjxzdG9wIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjQzNiIvPjxzdG9wIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%,color-stop(0, rgb(128, 21, 21)),color-stop(0.434, rgb(128, 21, 21)),color-stop(0.436, rgb(255, 255, 255)),color-stop(1, rgb(255, 255, 255)));
+    /* Android 2.3 */
+    background-image: -webkit-repeating-linear-gradient(top,rgb(128, 21, 21) 0%,rgb(128, 21, 21) 43.4%,rgb(255, 255, 255) 43.6%,rgb(255, 255, 255) 100%);
+    /* IE10+ */
+    background-image: repeating-linear-gradient(to bottom,rgb(128, 21, 21) 0%,rgb(128, 21, 21) 43.4%,rgb(255, 255, 255) 43.6%,rgb(255, 255, 255) 100%);
+    background-image: -ms-repeating-linear-gradient(top,rgb(128, 21, 21) 0%,rgb(128, 21, 21) 43.4%,rgb(255, 255, 255) 43.6%,rgb(255, 255, 255) 100%);
+}
+
+/* IE8- CSS hack */
+@media \0screen\,screen\9 {
+    #main-container {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff801515",endColorstr="#ffffffff",GradientType=0);
+    }
+}
+
+/* IE8- CSS hack */
+@media \0screen\,screen\9 {
+    .gradient {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff801515",endColorstr="#ffffffff",GradientType=0);
+    }
+}
+
+
+
+
+
+
+
+}
+
+#movie-container {
+}
+
+#movie-picture {
+    margin-top: 20px;
+    max-width: 400px;
+}
+
+#movie-picture img {
+    width: 100%;
+    height: auto;
+    max-width: 199px;
+
+}
+
+#movie-info p {
+    color: #343434;
+}
+
+#movie-info p.lead {
+    color: black;
+    margin-top: 40px;
+    margin-bottom: 2px;
+}
+
+#movie-info {
+    margin-top: 19px;
+    padding: 20px;
+}
+
+#synopsis {
+    max-width: 60%;
+}
+
+span {
+    color: #FFAAAA;
+}
+
+.span-container {
+    display: block;
+}
+
+#IMDbRating {
+    margin-left: 5px;
+    margin-bottom: 40px;
+}
+
+#movie-title, #movie-year {
+    color: white;
+    margin: 0;
+    margin-top: 10px;
+    display: inline-block;
+}
+h1 {
+    margin-right: 10px;
+}
+
+#IMDbBtn {
+    background: #AA6C39;
+    color: white;
+    width: 20%;
+    margin-top: 20px;
+}
+
+
+/* Display Movie : */
+
+#displayMovie {
+    margin: 0 auto;
+    z-index: 9999;
+}
