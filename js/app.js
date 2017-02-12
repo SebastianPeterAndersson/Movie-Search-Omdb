@@ -85,6 +85,7 @@ $(document).ready(function(){
                 // from the returned object to create a corresponding
                 $("#movie-title").text(data.Title);
                 $("#movie-year").text("(" + data.Year + ")");
+                // give the year some margin to create a space between it and the title:
                 $("#movie-year").css({
                     "margin-left": "10px"
                 });
@@ -93,13 +94,13 @@ $(document).ready(function(){
                 $("#synopsis").text(data.Plot);
                 $("#IMDbRating").text(data.imdbRating);
                 $("#IMDbLink").attr("href", "http://imdb.com/title/" + data.imdbID);
-
+                // When the user clicks the "search results"-button, show the movies and hide the displayed movie.
                 $("button#search-results").on("click", function(){
                     $("#movies").show();
                     $("#main-container").hide();
                 });
             }
-
+            // the getJSON 
             $.getJSON(url, data, callback);
 
 
